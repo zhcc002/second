@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+    <style lang="">
+        .box{
+            width:400px;
+            border:1px solid red;
+            margin:20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="jquery.js"></script>
+    <!-- <script src="ajax.js"></script> -->
+    <script>
+        //获取
+        var box=document.querySelector(".box");
+        //通过ajax来将a.txt这个文件当中的内容拿过来
+        //四部曲
+
+
+        //var xhr=new XMLHttpRequest()//现代浏览器中
+        //var xhr=new ActiveXObject("Microsoft.XMLHTTP");//IE浏览器中
+        // 处理兼容的函数-->返回一个ajax对象
+                /*
+                    function xhr(){
+                        var xhr=null;
+                        if(window.XMLHttpRequest){
+                            xhr=new XMLHttpRequest();
+                        }else{
+                            xhr=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        return xhr;
+                    }
+                */
+                /*
+        // 1. 获取ajax对象
+        var xhr=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");    
+        // 2. 客户端和服务器建立一个联系 xhr.open(type,url,asynch)
+                    //type    get||post
+                    //url 
+                    //asynch  true(异步)||false(同步) 
+        xhr.open("get","a.txt",true);
+        // 3. 发送请求
+        xhr.send();
+        // 4. 监听服务器端的通信状态      响应（回复）
+        xhr.onreadystatechange=function(){
+            //触发条件--》数据发生变化的时候触发
+            if(xhr.readyState==4){
+                //获取请求的状态
+                if(xhr.status==200){
+
+                    //服务器端返回的http响应值 200 202 400 404 500
+                    //text                    json                         xml
+                    //responseText  eval("("+xhr.response+")")        responseXML
+                    box.innerHTML=xhr.responseText;
+                }
+            }
+
+        }
+         */              
+
+
+         $.ajax({
+             url:'a.txt',
+             asynch:"true",
+             success:function(e){
+                 alert(1)
+                 box.innerHTML=e;
+             }
+         })
+       
+    </script>
+</body>
+</html>

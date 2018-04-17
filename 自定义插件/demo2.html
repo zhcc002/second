@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义插件中添加组件</title>
+</head>
+<body>
+    <div id="app">
+        <item></item>
+        <button @click="add(num)">{{num}}</button>
+        <input type="text" v-focus>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/plugin.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                num:0
+            },
+            methods:{
+                add:function(value){
+                    this.num=this.$add(value);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

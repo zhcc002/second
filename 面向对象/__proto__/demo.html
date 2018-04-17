@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象编程--  原型链   prototype chain</title>
+</head>
+<body>
+    <script>
+        // //构造函数
+        // function Person(name){
+        //     this.name=name;
+        //     this.fun=function(){
+        //         alert("你好")
+        //     }
+        // }
+        // function Student(name,age){
+        //     Student.prototype=new Person(name);
+        //     this.age=age;
+        //     this.show=function(){
+        //         alert("今天很好")
+        //     }
+        // }
+        // var obj=new Student("yyb",18);
+        // console.log(obj)
+        //console.log(obj.__proto__);
+
+
+
+
+
+     function OldFun(name){
+         this.name=name;
+     }
+     OldFun.prototype.age=18;
+     OldFun.prototype.aa=function(){
+         alert("你好！！！");
+     }
+     console.log(OldFun.prototype)
+     function Fun(name){
+         Fun.prototype=new OldFun(name);
+         console.log(Fun.prototype)
+         return Fun.prototype;
+     }
+     var obj=new Fun("yyb");
+     console.log(obj)
+     console.log(obj.name);
+
+    
+     
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

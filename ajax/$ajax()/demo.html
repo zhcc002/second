@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中的$.ajax()的使用</title>
+    <style lang="">
+        .box{
+            width:400px;
+            margin:20px auto;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- html结构 -->
+
+    <div class="box"></div>
+
+    <!-- 引入ajax.js这个js文件 -->
+    <script src="jquery.js"></script>
+    <script>
+        //获取DOM元素
+            var box=document.querySelector(".box");
+
+            //innnerHTML这个方法去放内容
+            //通过ajax把这个内容拿过来
+            // box.innerHTML=
+            $.ajax({
+                url:"user.json",
+                success:function(data){
+                    console.log(data)
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单文件/组件</title>
+    <style>
+        .fade-enter-active,.fade-leave-active{
+            transition:opacity,0.5s;       
+        }   
+        .fade-enter,.fade-leave{
+            opacity: 0;
+        }                   
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='fun()'>点击切换</button>
+        <!-- transition组件使用 给定name='fade' -->
+        <transition name="fade">
+            <p v-show="flag">{{msg}}</p>
+        </transition>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"yyb永远18岁",
+                flag:true
+            },
+            methods:{
+                //开关的切换函数
+                fun:function(){
+                    this.flag=!this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

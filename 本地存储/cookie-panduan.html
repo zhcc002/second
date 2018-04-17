@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>判断浏览器是否开启了cookie</title>
+</head>
+<body>
+    <script>
+        //document.cookie  navigator.cookieEnabled
+        if(!(document.cookie||navigator.cookieEnabled)){//没有开启的
+          alert("Cookie没有开启！")
+        }else{//开启了
+          alert("Cookie已开启！")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令->局部注册</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            // 局部注册自定义指令
+            directives:{
+                focus:{
+                    
+                        // inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document 中）。
+                    inserted:function(el){
+                        el.focus();
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

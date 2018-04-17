@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中的$.getScript()方法的使用</title>
+    <style lang="">
+        .box{
+            width:400px;
+            margin:20px auto;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- html结构 -->
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- 引入ajax.js这个js文件 -->
+    <script src="jquery.js"></script>
+    <script>
+        var li=document.querySelectorAll("li");
+       $.getScript("user.js",function(response,status,xhr){
+            //response   数据
+            //status    状态  success    error
+            //xhr  ajax对象  XMLHttpRequest对象
+            // $("li:nth-child(1)").html(response.name);
+            // $("li:nth-child(2)").html(response.age);
+            // $("li:nth-child(3)").html(response.sex);
+              //{"name":"yyb","age":"18"}
+
+            console.log(response)
+            // var arr=response.split("=");
+            // console.log(arr);
+            // var objStr=arr[1];
+            // var obj=JSON.parse(objStr);
+            // console.log(obj)
+            // li[0].innerHTML=obj.name;
+            // li[1].innerHTML=obj.age;
+            // li[2].innerHTML=obj.sex;
+            var arr=response.split("=");
+            console.log(arr)
+            var newArr=arr[1];
+            console.log(newArr)
+            var obj=JSON.parse(newArr);
+            console.log(obj)
+
+            // for(var i=0;i<li.length;i++){
+            //     li[i].innerHTML=obj[i].data;
+            // }
+            $.each(obj,function(i,v){
+                console.log(v,i)
+                $("li").eq(i).html(v.data);
+            })
+       })
+    </script>
+</body>
+</html>

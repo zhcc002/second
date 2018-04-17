@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css过渡</title>
+    <style>
+        #example {
+            position: relative;
+        }
+
+        /* 动画初始状态/最终状态*/
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        .btn {
+            position: absolute;
+            top: 300px;
+            left: 0;
+        }
+
+        /* 定义动画过程*/
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: all 0.5s ease;
+        }
+
+        /* enter:动画开始时状态.leave-active:动画结束时状态*/
+
+        .fade-enter,
+        .fade-leave-active {
+            opacity: 0;
+            top: 300px;
+            left: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 用transition元素包含动画所需的元素,用name属性命名动画名称-->
+        <transition name="fade">
+            <div class="box" v-show="show">{{ msg }}</div>
+        </transition>
+        <button class="btn" type="button" @click="show = !show">点我</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#example',
+            data: {
+                msg: "hello world",
+                show: true
+            }
+        });
+    </script>
+</body>
+
+</html>

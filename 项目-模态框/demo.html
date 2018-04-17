@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态框</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal-mask {
+            position: fixed;
+            z-index: 9997;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: table;
+            transition: all .3s ease;
+        }
+
+        .modal-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            background: rgba(0, 0, 0, .5);
+        }
+        .modal-container {
+            width: 300px;
+            box-sizing: border-box;
+            padding: 20px 30px;
+            border-radius: 4px;
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            z-index: 9999;
+            background: #ffffff;
+            transition: all .3s ease;
+            bottom: 50px;
+        }
+
+        .modal-head h3 {
+            margin-top: 0;
+            color: #42b983;
+        }
+
+        .modal-body {
+            margin: 20px 0;
+        }
+
+        .modal-foot button {
+            float: right;
+            width: 30px;
+        }
+
+        .modal-enter {
+            opacity: 0;
+        }
+
+        .modal-leave-active {
+            opacity: 0;
+        }
+
+        .modal-enter .modal-container,
+        .modal-leave-active .modal-container {
+            transform: translateY(150%);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <button @click='isShow=true'>打开模态框</button>
+
+        <!-- 模态框组件 -->
+
+        <item v-show='isShow' v-on:close='isShow=false'></item>
+
+    </div>
+    <script src="../../js/vue.js"></script>
+
+    <!-- 创建DOM模板 -->
+
+    <script type='text/x-template' id='model-template'>
+        <transition name="modal">
+				<div class="modal-mask">
+					<div class="modal-wrapper" @click="$emit('close')"></div>
+					<div class="modal-center">
+						<div class="modal-container">
+							<div class="modal-head">
+								<slot name="header">
+									<!--没有内容时显示-->
+									<h3>模态框的标题</h3>
+								</slot>
+							</div>
+							<div class="modal-body">
+								<slot name="main">
+									模态框的内容
+								</slot>
+							</div>
+							<div class="modal-foot">
+								<slot name="footer">
+									模态框的底部
+								</slot>
+								<button @click="$emit('close')">ok</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</transition>
+
+    </script>
+
+    <script>
+        // 组件创建
+        Vue.component('item', {
+            template: '#model-template'
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                isShow: false
+            }
+        })
+    </script>
+</body>
+
+</html>

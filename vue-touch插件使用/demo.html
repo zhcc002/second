@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-touch组件使用</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        #app{
+           width:5rem;
+           height:5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-touch会默认渲染出来一个div -->
+        <v-touch style="background:red;width:100%;height:100%"
+            v-on:tap="test" 
+        >
+            {{msg}}
+        </v-touch>
+    </div>
+    <script src="../../js/rem.js"></script>
+    <script src="../../js/vue.js"></script>
+    <!-- vue-touch是基于hammer.js的 -->
+    <script src="../../js/hammer.js"></script>
+    <script src="../../js/vue-touch.js"></script>
+    <script>
+        // 插件使用
+        Vue.use(VueTouch,{name:"v-touch"});
+        //实例化
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"yyb"
+            },
+            methods:{
+                test:function(e){
+                     console.log(123);
+                    this.msg=e.type;
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

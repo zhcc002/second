@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>可编辑性表格</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+      .box{
+        width:1200px;
+        margin:0 auto;
+      }
+      .table-bordered{
+        border:1px solid red;
+      }
+      .table-bordered>tbody>tr>td{
+        border:1px solid red;
+        text-align: center;
+      }
+  </style>
+</head>
+<body>
+  <!-- html结构 -->
+  <div class="box table-responsive">
+    <table class="table table-bordered table-hover">
+      <tr class="success">
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>性别</td>
+        <td>成绩</td>
+        <td>操作</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <button class="btn btn-success  btn-lg">增加</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/table.js"></script>
+</body>
+</html>

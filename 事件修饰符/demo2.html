@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符.capture</title>
+    <style>
+        .d1 .d2 .d3 {
+            cursor: pointer
+        }
+
+        .d1 {
+            background-color: green;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .d2 {
+            background-color: blue;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .d3 {
+            background-color: red;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 在d1绑定click事件-->
+        <!-- <div class="d1" v-on:click="one()"> -->
+            <!--查看增添了.capture修饰符,则在捕获模式中先执行-->
+            <div class="d1" v-on:click.capture="one()">
+            <!-- 在d2绑定click事件-->
+            <div class="d2" @click="two()">
+                <!-- 在d3绑定click事件-->
+                <div class="d3" v-on:click="three()"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#demo',
+            methods: {
+                
+                three: function() {
+                    console.log('我是d3');
+                },
+                two: function () {
+                    console.log('我是d2');
+                },
+                one: function () {
+                    console.log('我是d1');
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

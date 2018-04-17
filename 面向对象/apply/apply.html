@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象的继承   apply</title>
+</head>
+<body>
+    <script>
+        //写两个构造函数
+        function Person(name){
+            //this是Person实例化出来的对象的原型
+            this.name=name;
+            this.fun=function(){
+                alert("今天的天气很好！！");
+            }
+        }
+
+        function Student(name,age){
+            //this Student实例化出来的对象的原型
+            //this.name=name;
+           Person.apply(this,new Array(name))//apply传递的是数组
+           //会将Person中this中的属性和方法全部传递过来
+            this.age=age;
+            this.show=function(){
+                alert("今天的天气很不好");
+            }
+        }
+        var obj=new Student("yyb",18);//实例化自定义构造函数得到一个对象
+        console.log(obj);
+        console.log(obj.name)
+        obj.fun()
+        obj.show();
+    </script>
+</body>
+</html>

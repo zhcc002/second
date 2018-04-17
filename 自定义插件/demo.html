@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义插件</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-focus>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        //自定义插件
+        var MyPlugin={};
+
+        MyPlugin.install=function(Vue){
+            //全局属性的添加
+            Vue.nameA="yyb";
+            //全局方法添加
+            Vue.show=function(val){
+                alert(val)
+            }
+            //自定义指令的添加
+            Vue.directive("focus",{
+                inserted:function(el){
+                    el.focus();
+                }
+            })
+        }
+
+        // 使用插件
+        Vue.use(MyPlugin);
+
+        Vue.show("今天女神节")
+        new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

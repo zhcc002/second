@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>引用第3方动画库</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+    <style>
+        #demo {
+            margin-left: 300px;
+            margin-top: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- <button type="button" @click="show = !show">点我</button>-->
+        <!--绑定第3方动画-->
+        <transition name="begin" enter-active-class="animated zoomIn" leave-active-class="animated zoomOutDown">
+            <h1 v-show="show">Welcome to you!</h1>
+        </transition>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#demo",
+            data: {
+                show: false
+            },
+            /* 模板编译完、挂载之后，触发动画*/
+            mounted: function () {
+                this.show = !this.show;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格过渡</title>
+    <style>
+        *{
+            margin:0;padding:0;
+            list-style: none;
+        }
+        ul{
+            display: flex;
+            width:238px;
+            flex-wrap: wrap;
+            margin:30px;
+        }
+        li{
+            width:25px;height:25px;
+            border:1px solid red;
+            margin-right:1px ;
+            margin-bottom:1px ;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .container-move{
+            transition: transform 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='fun'>
+            切换
+        </button>
+
+        <transition-group tag="ul" name="container" >
+            <li v-for='v in list' :key='v.id'>
+                {{v.num}}
+            </li>
+        </transition-group>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:Array.apply(null,{length:80}).map(function(_,index){
+                    return {
+                        id:index,
+                        num:index+1
+                    }
+                })
+            },
+            methods:{
+                fun:function(){
+                    this.list=_.shuffle(this.list);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

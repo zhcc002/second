@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.5s;
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="fade">
+            <!-- 如果有多个元素，最好绑定一个key -->
+            <button v-if="toggle" key="on" @click="toggle = !toggle">
+                on
+            </button>
+            <button v-else key="off" @click="toggle = !toggle">
+                off
+            </button>
+        </transition>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                toggle: true
+            }
+        })
+    </script>
+</body>
+
+</html>

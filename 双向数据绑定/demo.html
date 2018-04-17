@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 文本域-->
+        <textarea v-model="val"></textarea>
+        {{val}}
+
+        <!-- 复选框 -->
+      
+        <label for="b">足球</label>
+        <input type="checkbox"  v-model="hobby" id="b" value="足球">
+        <label for="c">排球</label>
+        <input type="checkbox"  v-model="hobby" id="c" value="排球">
+        <label for="a">篮球</label>
+        <input type="checkbox" id="a" v-model="hobby" value="篮球">
+        hobby:{{hobby}}
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                val:"",
+                hobby:[]
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变化检测</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="str">
+        <!-- Vue初始化实例时，data中存在的才会有响应 -->
+        {{str}}
+        <input type="text" v-model="name">
+        <!-- Vue实例初始化完成后再添加的属性不会有响应 -->
+        {{name}}
+        
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                // 初始化时已有data
+                str:"abc"
+            }
+        })
+        vm.str="bce";
+        // 初始化完成后添加的data
+        vm.name="yyb"
+    </script>
+</body>
+</html>

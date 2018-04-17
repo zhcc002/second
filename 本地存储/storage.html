@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sessionStorage-localstorage</title>
+</head>
+<body>
+      <!-- 小案例 -->
+        <form action="" name="form">
+          <input type="text" name="user">
+          <input type="button" value="添加" name="addBtn">
+          <input type="button" value="获取" name="getBtn">
+          <input type="button" value="删除" name="removeBtn">
+          <input type="button" value="清空" onclick="clearData()">
+        </form>
+      <script>
+          // 获取
+          var form=document.form;
+          var user=form.user;
+          var addBtn=form.addBtn;
+          var getBtn=form.getBtn;
+          addBtn.onclick=addData;
+          function addData(){
+              if(!user.value){//input有没有写东西
+                alert("请输入用户名");
+                return ;//结束运行
+              }
+              //添加一条数据到sessionStorage
+              var arr=[{"order_title":"拉菲红酒正品原瓶12瓶送木箱(0)","order_price":"￥1099.00","order_number":"1","order_money":"￥1099.00"}]
+              sessionStorage.setItem("userName","yyb");
+              sessionStorage.setItem("userName1","zq");
+              sessionStorage.setItem("userName2","myy");
+              localStorage.setItem("name",arr);
+          }
+
+          //怎么获取本地存储中的数据呢？
+            getBtn.onclick=function(){
+                getData("userName1")
+            };
+            function getData(key){
+              var val=sessionStorage.getItem(key);
+              console.log(val);
+            }
+
+          //怎么删除这个本地存储当中的数据？
+            var removeBtn=form.removeBtn;
+            removeBtn.onclick=function(){
+              removeData("userName1")
+            }
+            function removeData(key){
+              sessionStorage.removeItem(key);
+            }
+        //怎么全部清空这个本地存储呢？
+            function clearData(){
+              sessionStorage.clear();
+            }
+      </script>
+</body>
+</html>

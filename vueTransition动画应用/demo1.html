@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>通过组件组织过渡</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="number" v-model.number='a' step="20">+
+
+        <input type="number" v-model.number='b' step="20">= {{result}}
+
+        <hr>
+
+        <div>
+            <item v-bind:value='a'></item>+
+            <item v-bind:value='b'></item>=
+            <item v-bind:value='result'></item>
+        </div>
+
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script src="https://unpkg.com/tween.js@16.3.4"></script>
+    <script>
+        // 这种复杂的补间动画逻辑可以被复用
+        // 任何整数都可以执行动画
+        // 组件化使我们的界面十分清晰
+        // 可以支持更多更复杂的动态过渡
+
+        // 创建组件
+            Vue.component('item',{
+                template:'<span>{{tweeningValue}}</span>',
+                props:{
+                    value:{
+                        type:Number,
+                        require:true
+                    }
+                },
+                data:function(){
+                    return {
+                        tweeningValue:0
+                    }
+                },
+                watch:{
+                    value:function(newVal,oldVal){
+                        this.tween(oldVal,newVal)
+                    }
+                },
+                mounted:function(){
+                    this.tween(0,this.value)
+                },
+                methods:{
+                    tween:function(startVal,endVal){
+                        var vm=this;
+                        var t;
+                        function update(time){
+                            TWEEN.update(time);
+                            var t=requestAnimationFrame(update)
+                        }
+
+                        new TWEEN.Tween({tweeningValue:startVal})
+                        .to({tweeningValue:endVal},500)
+                        .onUpdate(function(){
+                            vm.tweeningValue=this.tweeningValue.toFixed(0)
+                        })
+                        .onComplete(function(){
+                            cancelAnimationFrame(t);
+                        })
+                        .start()
+                        t=requestAnimationFrame(update)
+                    }
+                }
+            })
+
+        new Vue({
+            el: "#app",
+            data: {
+                a: 10,
+                b: 10
+            },
+            computed: {
+                result: function () {
+                    return this.a + this.b;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

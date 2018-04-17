@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cookie函数的设置 获取 删除</title>
+</head>
+<body>
+    <script>
+        //设置
+          function setCookie(name,value,time){
+            //name键   value值  time expires=
+            if(time==undefined){
+                document.cookie=name+"="+value;
+            }else{
+                var date=new Date();//当前时间
+                date.setTime(date.getTime()+time*1000);
+                document.cookie=name+"="+value+";expires="+date.toGMTString();
+            }
+          }
+          setCookie("yyb","18",2000);
+
+          function getCookie(name){
+              var str=document.cookie;//获取cookie
+              var arr=str.split("=");//string-->array
+              var result;
+              for(var i=0;i<arr.length;i++){
+                if(arr[0]==name){
+                  result=arr[1];
+                }
+              }
+              return result;
+          }
+
+          console.log(getCookie("yyb"))
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录页面</title>
+</head>
+<body>
+    <div>这里是登录页面</div>
+    <form action="" name="form">
+        请输入用户名<input type="text" name="user">
+        请输入密码 <input type="text" name="pass">
+        <input type="button" name="login" value="登录">
+    </form>
+    <script>
+        var form=document.form;
+        var user=form.user;
+        var pass=form.pass;
+        var login=form.login;
+        var arr=JSON.parse(localStorage.userList);
+        console.log(arr)
+        //登录的事件
+        login.onclick=function(){
+          var userData=user.value;
+          var passData=pass.value;
+          //循环数组，我们就可以拿到里面的每一个对象，每一个信息
+          var f=false;
+          arr.forEach(function(v,i){
+            //v---》就是每一个对象 {}
+            if(v.user==userData&&v.pass==passData){
+              //用户名和密码都是正确的
+              f=true;
+            }
+          })
+          if(f){
+            alert("成功了");
+            location.href="index.html"
+          }else{
+            alert("失败了")
+          }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js动画钩子</title>
+    <style>
+        .move-enter-active,
+        .move-leave-active {
+            transition: opacity 0.5s;
+        }
+
+        .move-enter,
+        .move-leave {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="fun()">切换</button>
+        <transition name="move" 
+        v-on:before-enter='beforeEnter' 
+        v-on:enter='enter' 
+        v-on:after-enter='after+Enter' 
+        v-on:enter-cancelled="enterCancelled"
+        v-on:before-leave="beforeLeave" 
+        v-on:leave="leave" 
+        v-on:after-leave="afterLeave"
+        v-on:leave-cancelled="leaveCancelled">
+            <p v-show='flag'>{{msg}}</p>
+        </transition>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: "yyb永远18岁",
+                flag: true
+            },
+            methods: {
+                fun: function () {
+                    this.flag = !this.flag;
+                },
+                // 进入前
+                beforeEnter: function (el) {
+                    console.log(el);
+                    console.log("beforeEnter");
+                },
+                enter: function (el, done) {
+                    console.log(el)
+                    console.log("enter")
+                },
+                afterEnter: function (el) {
+                    console.log(el)
+                    console.log("afterEnter")
+                },
+                enterCancelled: function (el) {
+                    console.log(el)
+                    console.log("enterCancelled")
+                },
+                beforeLeave: function (el) {
+                    console.log(el)
+                    console.log("beforeLeave")
+                },
+                leave: function (el, done) {
+                    console.log(el)
+                    console.log("leave")
+                },
+                afterLeave: function (el) {
+                    console.log(el)
+                    console.log("afterLeave")
+                },
+                leaveCancelled: function (el) {
+                    console.log(el)
+                    console.log("leaveCancelled")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

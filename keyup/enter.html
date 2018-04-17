@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>keyup事件enter修饰符</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="name" v-on:keyup.enter="addEle(name)" />
+        <ul>
+            <li v-for="x in dataArr">
+                {{x}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                dataArr: [
+                    1, 2, 3, 4, 5
+                ],
+                name: ""
+            },
+            methods: {
+                addEle: function (value) {
+                    this.dataArr.push(value)
+                    this.name = ""
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ref对象的使用</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="styleObj"  v-on:click="fun($event)" ref="box">
+
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                styleObj:{width:"100px",height:"100px",background:"red"}
+            },
+            methods:{
+                fun:function(e){
+                    // 只用在fun($event) 调用中传入$event ，才能访问到原始的事件对象
+                    // console.log(e)
+
+                    // 通过this.$refs可以访问到我们元素中绑定了ref属性的元素
+                    console.log(this.$refs)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

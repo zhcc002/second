@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>多个元素过渡-滑动效果</title>
+    <style type="text/css">
+        button {
+            position: absolute;
+        }
+
+        .fade-leave-active,
+        .fade-enter-active {
+            transition: all 1s;
+        }
+
+        .fade-leave-active {
+            transform: translateX(-31px);
+            -moz-transform: translateX(-31px);
+            -webkit-transform: translateX(-31px);
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        .fade-enter {
+            transform: translateX(31px);
+            -moz-transform: translateX(31px);
+            -webkit-transform: translateX(31px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="fade">
+            <button v-if="toggle" key="on" @click="toggle = !toggle">
+                on
+            </button>
+            <button v-else key="off" @click="toggle = !toggle">
+                off
+            </button>
+        </transition>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                toggle: true
+            }
+        })
+    </script>
+</body>
+
+</html>

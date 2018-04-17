@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>过渡模式</title>
+    <style type="text/css">
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.3s;
+        }
+
+        .fade-enter,
+        .fade-leave-active {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 过渡模式 mode='out-in'  in-out -->
+        <transition name="fade" mode='out-in'>
+            <button v-if="toggle" key="on" @click="toggle = !toggle">
+                on
+            </button>
+            <button v-else key="off" @click="toggle = !toggle">
+                off
+            </button>
+        </transition>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                toggle: true
+            }
+        })
+    </script>
+</body>
+
+</html>

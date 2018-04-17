@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象编程  prototype实现继承</title>
+</head>
+<body>
+    <script>
+        //自定义构造函数
+        function Fun(name,age){
+            //数据 信息
+            this.name=name;
+            this.age=age;
+        }
+        Fun.prototype={
+            aa:function(){
+                alert("1")
+            },
+            bb:function(){
+                alert("2")
+            }
+        }
+        //  这两个数据放在后台----ajax
+        // jquery中的ajax()
+        var name,age;
+        /*
+        $.ajax(url,function(response,status,xhr){
+            if(status=="success"){
+                // response
+            }
+        })
+        */
+       //注意：全局和局部变量的不同   作用域
+        var obj=new Fun(name,age);
+        console.log(obj)
+        obj.aa();
+        obj.bb();
+    </script>
+</body>
+</html>

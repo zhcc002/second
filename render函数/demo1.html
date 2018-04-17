@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>通过render函数自定义组件</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num" />
+        <my-component v-bind:level="num">
+            <a href="http://www.baidu.com">百度一下</a>
+        </my-component>
+    </div>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.component('myComponent', {
+            render: function (createElement) {
+                return createElement(
+                    'h' + this.level,
+                    this.$slots.default
+                )
+            },
+            props: {
+                level: {
+                    type: Number,
+                    default: 1
+                }
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            }
+        })
+    </script>
+</body>
+
+</html>

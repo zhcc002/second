@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件配置项</title>
+    <style>
+        .box{
+            width:100%;
+            height:5rem;
+            margin-top:0.2rem;
+            font-size:0.2rem;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-touch
+            class="box"
+            v-on:pan="fun"
+            v-bind:pan-options="{thireshold:50,direction:'left'}"
+        >
+            {{msg}}
+            <p>thireshold参数表示拖动的距离</p>
+            <p>direction参数表示拖动的方向</p>
+        </v-touch>
+
+        <v-touch
+            class="box"
+            v-on:press="pressFun"
+            v-bind:press-options="{time:500}"
+        >
+            {{msgA}}
+            <p>参数time表示按下的时间</p>
+        </v-touch>
+
+        <v-touch
+            class="box"
+            v-on:swipe="swipeFun"
+            v-bind:swipe-options="{thireshold:50,velocity:1}"
+        >
+            {{msgB}}
+            <p>
+                参数velocity表示拖动的速度
+            </p>
+        </v-touch>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/hammer.js"></script>
+    <script src="../../js/vue-touch.js"></script>
+    <script src="../../js/rem.js"></script>
+    <script>
+        Vue.use(VueTouch,{name:"v-touch"});
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"",
+                msgA:"",
+                msgB:""
+            },
+            methods:{
+                fun:function(e){
+                    this.msg=e.type;
+                },
+                pressFun:function(e){
+                    this.msgA=e.type
+                },
+                swipeFun:function(e){
+                    this.msgB=e.type;
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

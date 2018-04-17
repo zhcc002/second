@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON数据的对象使用</title>
+</head>
+<body>
+    <ul></ul>
+    <script>
+    //1. 对象上的操作
+      //  将string格式的JSON数据转换成了对象 JSON.parse()
+      //     var str='{"name":"yyb","age":"18","sex":"man"}';
+      //     var obj=JSON.parse(str);
+      //     console.log(str);
+      //     console.log(obj);
+      // //将对象变成string格式的JSON数据  JSON.stringify()
+      //     var obj1={name:"zq",age:"18",sex:"woman"};
+      //     var str1=JSON.stringify(obj1);
+      //     console.log(obj1,str1);
+//2. 数组上的操作
+      var str='[{"name":"LV","style":"fashion","color":"black","price":"20000"},{"name":"parada","style":"fashion","color":"red","price":"30000"}]';
+      //string--->object
+      var arr=eval(str);//就是将字符串（JSON）解析成能够使用对象
+      console.log(arr)
+      // console.log(arr)
+      //1
+      var ul=document.querySelector("ul");
+      arr.splice(1,1);
+      arr.forEach(function(v,i){
+        var li=document.createElement("LI");
+        li.innerHTML=v.name;
+        ul.appendChild(li);
+      })
+      // for(var i=0;i<arr.length;i++){
+      //   // console.log(i);
+      //   // console.log(arr[i].name)
+      //   var li=document.createElement("LI");
+      //   li.innerHTML=arr[i].name;
+      //   ul.appendChild(li);
+      // }
+  </script>
+</body>
+</html>

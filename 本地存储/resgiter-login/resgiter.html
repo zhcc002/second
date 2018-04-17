@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册页面</title>
+</head>
+<body>
+    <div>这里是注册页面</div>
+    <form action="" name="form">
+        请输入用户名<input type="text" name="user">
+        请输入密码 <input type="text" name="pass">
+        <input type="button" name="resgiter" value="注册">
+    </form>
+    <script>
+        var form=document.form;
+        var user=form.user;
+        var pass=form.pass;
+        var resgiter=form.resgiter;
+        var arr=[];
+        //userList:"arr"
+        if(localStorage.userList==undefined){
+          arr=[];
+        }else{
+          arr=JSON.parse(localStorage.userList);
+        }
+        resgiter.onclick=function(){
+          var userData=user.value;
+          var passData=pass.value;
+          // console.log(userData,passData)
+          arr.push({"user":userData,"pass":passData});
+          localStorage.userList=JSON.stringify(arr);
+          location.href="login.html"
+        }
+    </script>
+</body>
+</html>

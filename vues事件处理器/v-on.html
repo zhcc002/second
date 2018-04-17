@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="toggle('hi')">点击显示 隐藏</button>
+        <p v-show="flag">yyb</p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                flag:true
+            },
+            methods:{
+                toggle:function(message){
+                    alert(message)
+                    this.flag=!this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

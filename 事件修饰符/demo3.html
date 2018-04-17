@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符.self</title>
+    <style>
+        .d1 .d2 .d3 {
+            cursor: pointer
+        }
+
+        .d1 {
+            background-color: green;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .d2 {
+            background-color: blue;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .d3 {
+            background-color: red;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 在d1绑定click事件-->
+        <!-- <div class="d1" v-on:click="one()"> -->
+            <!--查看添加了修饰符.self,只在父元素本身执行-->
+            <div class="d1" v-on:click.self="one()">
+            <div class="d2">
+                <div class="d3"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#demo',
+            methods: {
+                one: function () {
+                    console.log('我是d1');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

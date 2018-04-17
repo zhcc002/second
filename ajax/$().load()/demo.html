@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中的$().load()方法的使用</title>
+    <style lang="">
+        .box{
+            width:400px;
+            margin:20px auto;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- html结构 -->
+
+    <div class="box"></div>
+
+    <!-- 引入ajax.js这个js文件 -->
+    <script src="jquery.js"></script>
+    <script>
+        $(".box").load("user.json",function(response,status,xhr){
+            //response-->数据
+            //status--》返回的状态
+            //xhr--->XMLHttpRequest
+            console.log(response,status,xhr)
+        })
+           
+    </script>
+</body>
+</html>

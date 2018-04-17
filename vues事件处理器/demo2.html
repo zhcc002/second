@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用方法属性来实现过滤</title>
+</head>
+<body>
+    <div id="app">
+
+        <ul>
+            <li v-for="v in lists">
+                <p v-for="x in fun(v)">{{x}}</p>
+            </li>   
+        </ul>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                lists:[
+                    [1,2,3,4,5],
+                    [6,7,8,9,10]
+                ]
+            },
+            methods:{
+                fun:function(data){//函数功能：将data中的list这个数组中偶数取出来
+                    return data.filter(function(data){
+                        return data%2==0;
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

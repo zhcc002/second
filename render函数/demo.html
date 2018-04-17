@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>原始方式自定义组件</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num" />
+        <my-component v-bind:level="num">
+            <a href="http://www.baidu.com">百度一下</a>
+        </my-component>
+    </div>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/template" id="template">
+        <div>
+            <h1 v-if="level === 1">
+                <slot></slot>
+            </h1>
+            <h2 v-if="level === 2">
+                <slot></slot>
+            </h2>
+            <h3 v-if="level === 3">
+                <slot></slot>
+            </h3>
+            <h4 v-if="level === 4">
+                <slot></slot>
+            </h4>
+            <h5 v-if="level === 5">
+                <slot></slot>
+            </h5>
+            <h6 v-if="level === 6">
+                <slot></slot>
+            </h6>
+        </div>
+    </script>
+    <script type="text/javascript">
+        Vue.component('myComponent', {
+            template: '#template',
+            props: {
+                level: {
+                    type: Number,
+                    default: 1
+                }
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            }
+        })
+    </script>
+</body>
+
+</html>

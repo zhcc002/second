@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watcher监听数据变化</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='num'>
+        <!-- 双向数据绑定 -->
+        <p>{{n}}</p>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script src="https://unpkg.com/tween.js@16.3.4"></script>
+ <!-- Tween原意是补间动画，也就是给出一个物体的原始位置和目标位置，Tween会在原始位置和目标位置补充动画，实现移动的动画效果/ -->
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                num:0,
+                n:0
+            },
+            //添加跟实例属性的监听
+            watch:{
+                num:function(newVal,oldVal){
+                    //newVal->更新的值   oldVal-->更新前的值
+
+                    var vm=this;//vm就是实例
+
+                    //判断我们的数据是否改变？如果改变，执行帧动画
+                    function update(){
+                        TWEEN.update()//更新动画的 返回值是false|true
+                        // console.log(TWEEN.update())
+                        if(TWEEN.update()){
+                            requestAnimationFrame(update)//css3帧动画
+                        }
+                    }
+                    update()
+
+                    // Tween.js这个库的方法
+
+                        //实例化TWEEN.Tween()方法得到一个Tween对象
+                        new TWEEN.Tween({tweeningNumber:oldVal})//原始值
+                        .easing(TWEEN.Easing.Quadratic.Out)//动画速度
+                        .to({tweeningNumber:newVal},500)//目标值
+                        .onUpdate(function(){
+                            vm.n=this.tweeningNumber.toFixed(0);//小数位数保留的处理
+                        })
+                        .onComplete(function(){
+                            //更新结束后停止帧动画
+                            cancelAnimationFrame(vm.n);
+                        })
+                        .start()//启动动画
+
+
+
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象编程-继承  call()</title>
+</head>
+<body>
+    <script>
+        //书写两个自定义构造函数
+        function Person(name){
+            this.name=name;
+            this.fun=function(){
+                alert("今天周五了！！！")
+            }
+        }
+
+        function Student(name,age){
+            //this.name=name;
+            Person.call(this,name);//call传递的是除数组以外的
+            this.age=age;
+            this.show=function(){
+                alert("今天要放假了！！！");
+            }
+        }
+
+        var obj=new Student("yyb",18);
+        console.log(obj)
+        obj.fun();
+
+
+
+    /*
+        call以及apply的使用和区别？
+            使用：
+                1. 面向对象的继承
+                2. 回调函数中改变this指针     hover函数封装中
+            区别：传递的参数不同
+                call传递的是（this,obj）
+                apply传递的是（this,arr）传递的是一定一个数组
+    */
+
+
+
+    </script>
+</body>
+</html>

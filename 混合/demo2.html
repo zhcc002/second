@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局注册混合对象</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        //为自定义选项aa注入一个处理器
+        Vue.mixin({
+            created () {
+                console.log("混合对象中的钩子被调用");
+                var bb=this.$options.aa;
+                if(bb){
+                    console.log(bb)
+                }
+            }
+        })
+        new Vue({
+            created:function(){
+                console.log("组件中的钩子被调用")
+            },
+            aa:"今天是女神节"
+        })
+    </script>
+</body>
+</html>

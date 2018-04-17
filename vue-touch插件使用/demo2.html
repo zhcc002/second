@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pan使用</title>
+    <style>
+        .box{
+            width:2rem;height:2rem;
+            background:red;
+            margin-bottom:2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <v-touch class="box" draggable 
+            v-on:pan="test"
+        >
+            {{msg}}
+        </v-touch>
+
+        <v-touch class="box" v-on:panLeft="testA" >
+            {{msgA}}
+        </v-touch>
+
+        <v-touch class="box" 
+            v-on:press='pressFun'
+        >
+            {{msgA}}
+        </v-touch>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/hammer.js"></script>
+    <script src="../../js/vue-touch.js"></script>
+    <script src="../../js/rem.js"></script>
+    <script>
+        Vue.use(VueTouch,{name:"v-touch"});
+        new Vue({
+            el:"#app",
+            data:{
+                msg:'',
+                msgA:''
+            },
+            methods:{
+                test:function(e){
+                    this.msg=e.type;
+                },
+                testA:function(e){
+                    console.log(e)
+                },
+                pressFun:function(e){
+                    this.msgA=e.type
+                }
+            }
+        })
+    </script>
+</body>
+</html>

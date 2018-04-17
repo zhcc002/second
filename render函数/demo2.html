@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>深入data的Object选项</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="str" />
+        <my-component v-bind:value="str">
+            <h1>自定义组件</h1>
+            <p>好吧</p>
+        </my-component>
+    </div>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.component('myComponent', {
+            render: function (createElement) {
+                console.log(this.$slots.default)
+                return createElement('div',
+                    //this.$slots.default //子组件中的阵列
+                    [createElement('h2', "hello component!"),
+                        //Object选项
+                        createElement("input", {
+                            //给dom元素指定属性
+                            domProps: {
+                                id: 'p',
+                                className: 'box',
+                                value: this.value
+                            },
+                            on: {
+                                click: function () {
+                                    console.log(123)
+                                }
+                            }
+                        })
+                    ]
+                )
+            },
+            props: {
+                value: {
+                    type: String
+                }
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                str: "今天天气很好！"
+            }
+        })
+    </script>
+</body>
+
+</html>

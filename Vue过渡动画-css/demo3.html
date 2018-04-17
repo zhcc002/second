@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>animate动画效果</title>
+    <style>
+        #app {
+            margin: 20px auto;
+        }
+
+        .move-enter-active {
+            animation: move-out 0.5s;
+        }
+
+        .move-leave-active {
+            animation: move-in 0.5s;
+        }
+
+        /* 定义动画 */
+
+        @keyframes move-in {
+            0% {
+                transform: skew(0);
+                opacity: 1;
+            }
+            50% {
+                transform: skew(45deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: skew(90deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes move-out {
+            0% {
+                transform: skew(90deg);
+                opacity: 0;
+            }
+            50% {
+                transform: skew(45deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: skew(90deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button type="button" @click="show = !show">切换</button>
+        <br>
+        <!--用transition包括需动画的元素-->
+        <transition name="move">
+            <p v-show="show">yyb</p>
+        </transition>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                show: true
+            }
+        });
+    </script>
+</body>
+
+</html>
